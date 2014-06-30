@@ -16,8 +16,15 @@ Software basierende Such-Plattform für die Hochschulbibliographie der RUB entwi
 mit geringen Anpassungen unterschiedliche Datenquellen integriert werden konnten. Im September 2011 testeten wir mit
 ProQuest (damals noch Serials Solutions) zum ersten Mal die Möglichkeit, einen Discovery Dienst in diese Plattform zu
 integrieren. Da ein Demonstrator recht schnell implementiert werden konnte, entschlossen wir uns, die Produkte Summon
-von ProQuest und EDS von Ebsco durch Integration über die angebotenen APIs nebeneinander zu evaluieren.  
+von ProQuest und EDS von Ebsco durch Integration über die angebotenen APIs sowie einen Suchmaschinenindex mit unseren
+Katalogdaten nebeneinander zu evaluieren.  
 Im Folgenden werden wir die Architektur unseres Protoyps beschreiben, die angebotenen APIs und Metadaten und auch die
 Erfahrungen, welche die UB-Mitarbeiter und die regulären Bibliotheksbenutzer mit diesen Diensten gemacht haben.
 
 ##Technische Architektur
+
+##APIs und Metadaten
+
+##Benutzererfahrungen
+
+##Fazit
