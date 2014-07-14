@@ -51,9 +51,13 @@ das Layout als auch die Funktionalitäten) angepasst werden kann, und der Einbin
 letztere Möglichkeit gewaählt. Kernstück der Architektur ist ein Django Webapplikationsserver, der sowohl die Discovery
 Dienste als auch den lokalen Index anspricht. Für das Oberfächenlayout kommt das CSS-Framework _Bootstrap_[^1] in einer
 nur rudimentär an das Corporate Design der Ruhr-Universität Bochum angepassten Form zum Einsatz. Darüber hinaus stellt
-ein weiterer Django-Server eine Implementierung der _Document Availability API_ (DAIA)[^2] zur Verfügung, die sowohl
-Verfügbarkeitsinformationen aus dem Lokalsystem als auch aus dem _Journals Online & Print_ (JOP)-Dienst der DNB als auch
-dem 360 Link-Resolver von ProQuest hinter dieser plattformneutralen Programmierschnittstelle kapselt.  
+ein weiterer Django-Server eine Implementierung der _Document Availability Information API_ (DAIA)[^2] zur Verfügung,
+die sowohl Verfügbarkeitsinformationen aus dem Lokalsystem als auch aus dem _Journals Online & Print_ (JOP)-Dienst der
+DNB als auch dem 360 Link-Resolver von ProQuest hinter dieser plattformneutralen Programmierschnittstelle kapselt.
+Damit soll den BenutzerInnen sofort die Möglichkeit gegeben werden, anhand der Verfügbarkeit über die Relevanz eines
+Treffers zu entscheiden, ob der Titel relevant ist. Eine weitere Entscheidungshilfe über die Relevanz des Treffers wird
+über die Integration des Dienstes _Altmetric_[^3] zu geben versucht, der Metriken über die Verwendung eines Artikels im
+Web aggregiert.
 Ein weiteres Desiderat dieses Tests sah vor, dass die Ergebnisse aus den Suchen in den Discover-Diensten untereinander aber
 auch zu unserem OPAC vergleichbar sein sollten. Daher haben wir die Trefferlisten so modelliert, dass eine Anfrage in
 eines der drei Systeme die Trefferanzahl der jeweils anderen beiden sowie einen Link mit der Suchanfrage in den
@@ -67,6 +71,7 @@ Navigatoren der drei Systeme nicht aufeinander abbildbar waren.
 ## Benutzererfahrungen
 
 ## Fazit
-[^1]: http://getbootstrap.com/2.3.2/ "Zuletzt gesehen 2014-07-15"
-[^2]: http://gbv.github.io/daiaspec/daia.html §Zuletzt gesehen 2014-07-15"
-[1]: http://journal.code4lib.org/articles/7738 "Zuletzt gesehen 2014-07-07"
+[^1]: http://getbootstrap.com/2.3.2/ "Twitter: Bootstrap. [Zugriff: 14. Juli 2014]."
+[^2]: http://gbv.github.io/daiaspec/daia.html "Voss, Jacob; Reh, Uwe: Document Availability Information API (DAIA). [Zugriff: 14. Juli 2014]."
+[^3]: https://api.altmetric.com/ 
+[^99]: http://journal.code4lib.org/articles/7738 "Zuletzt gesehen 2014-07-07"
