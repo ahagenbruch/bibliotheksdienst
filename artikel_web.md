@@ -69,7 +69,7 @@ Discovery-Dienste enthaltenen OpenURL-Informationen ein Link zur Fernleihe der D
 Nutzern die Möglichkeit gegeben werden, sofort anhand der Verfügbarkeit über die Relevanz eines Treffers zu
 entscheiden. Eine weitere Entscheidungshilfe über die Relevanz des Treffers wurde über die Integration des Dienstes
 _Altmetric_[^5] zu geben versucht, der Metriken über die Verwendung eines Artikels im Web aggregiert.  
-[Abbildung 1: technische_architektur.jpg]  
+![Abbildung 1: Technische Architektur](./technische_architektur_web.jpg)  
 Ein weiteres Desiderat dieses Tests sah vor, dass die Ergebnisse aus den Suchen in den Discovery-Diensten untereinander aber
 auch zu unserem OPAC vergleichbar sein sollten. Daher haben wir die Trefferlisten so modelliert, dass eine Anfrage in
 eines der drei Systeme die Trefferanzahl der jeweils anderen beiden sowie einen Link mit der Suchanfrage in den
@@ -87,7 +87,7 @@ anhand des Datenbanktitels ein semi-automatisches Mapping der Titel auf die URLs
 in der jeweiligen Datenbank weiterrecherchieren konnten. Da die Discovery-Dienste für sich in Anspruch nehmen, mit einer
 Google-artigen Ein-Schlitz-Suche sehr gute Ergebnisse zu erzielen, haben wir auf die Implementierung einer erweiterten
 Suche verzichtet.  
-[Abbildung 2: ergebnisliste.jpg]  
+![Abbildung 2: Ergebnisliste in Summon](./ergebnisliste_web.jpg)  
 
 ## Metadaten und APIs
 ProQuest bezieht seine bibliographischen Daten direkt von den Verlagen, in EDS hingegen stammen diese von
@@ -103,7 +103,7 @@ Schlagwörter), die sich nicht beim umfangreichsten Titel befinden und somit nic
 ProQuest ermöglicht seinen Nutzern im Übrigen durch passend zur Suchanfrage generierte Datenbankvorschläge den Übergang
 in Datenbankangebote. Hierbei traten allerdings Probleme bei der Recherche mit deutschsprachigen Suchbegriffen auf, was
 darin begründet liegt, dass die Datenbankvorschläge aus Voreinstellungen und Crowdsourcing generiert werden. So wurden
-beispielsweise bei der Suche nach "epilepsy" zwei passende Datenbanken angeboten, während die Suche nach "Epilepsie" keine
+beispielsweise bei der Suche nach "epilepsy" zwei passende Datenbanken angeboten, während die Suche nach "Epilesie" keine
 Datenbankvorschläge erzeugte.  
 Aus dem unterschiedlichen Umgang der beiden Discovery-Anbieter mit den Metadaten ergeben sich auch lizenzrechtliche
 Konsequenzen für die Nutzer dieser Angebote: Während die Metadaten in den Ergebnislisten in Summon vollständig angezeigt
@@ -112,7 +112,7 @@ unter Umständen nur authentifizierten Nutzern vollständig angezeigt. Technisch
 problemlos möglich, allein aufgrund vertraglicher Vereinbarungen sehen Nutzer, die nicht durch Authentifizierung oder
 aufgrund ihrer IP-Adresse autorisiert sind, lediglich Stellvertreter anstelle der Titeldaten, was den
 Benutzererwartungen an Suchanwendungen im Web fundamental widerspricht.  
-[Abbildung 3: eds-platzhalter.jpg]  
+![Abbildung 3: Platzhalter für nicht frei anzeigbare Metadaten in EDS](./eds-platzhalter_web.jpg)  
 Während sowohl Summon als auch EDS eine REST-basierte API anbieten, deren Daten im XML- bzw. im JSON-Format
 ausgegeben werden, besteht der grundlegende Unterschied zwischen diesen beiden Angeboten darin, dass die
 Summon-Webanwendung vollständig auf der API beruht, während die EDS-Oberfläche eine von den Programmierschnittstellen
@@ -123,20 +123,20 @@ Obschon die Dokumentation der Summon-API vollständig im Web für jedermann eins
 Komponenten und Parameter beschreibt, ist die EDS-API-Dokumentation nur Kunden zugänglich. Sie gliedert sich in zwei
 Dokumente, eine nutzerorientierte Übersicht und eine Referenz, die zwar detailliert über die Parameter Auskunft gibt,
 nicht jedoch über die Benennungen der im Index vorhandenen Felder, was dazu führte, dass wir erst im Laufe unserer
-Implementierung durch Anschauung der konkreten Daten herausfinden konnten, in welchen Kategorien welche Werte zu
+Implementierung durch Anschauung der konkreten Daten herausfinden konnte, in welchen Kategorien welche Werte zu
 erwarten waren. Wenig hilfreich war in diesem Zusammenhang, dass ein und dieselbe Kategorie mehrere Bezeichnungen
 besitzt. Ein Pluspunkt gegenüber der Summon-Dokumentation stellt hingegen die API-Console[^6] dar, in der man
 unterschiedlichste Anfragen ausprobieren kann.  
 Problematisch ist an der EDS-API allerdings, dass es vier Detailgrade bezüglich des Umfangs der Feldstruktur eines
 Datensatzes gibt: „Title“ (nur der Titel), „Brief“ (Titel, Quelle und Schlagwörter) und „Detailed“ (Brief plus Abstract).
 Während diese drei Ebenen der „Search“-Funktion der Ergebnisliste vorbehalten sind, gibt es den
-vollumfänglichen Datensatz nur mit  der „Retrieve“-Funktion, die für die Vollanzeige genutzt wird. Eine solche 
+vollumfänglichen Datensatz nur mit  der „Retrieve“-Funktion, die für die Volltrefferanzeige genutzt wird. Eine solche 
 Unterscheidung gibt es in Summon nicht: Dort ist schon in der Ergebnisliste jeder Treffer im vollen Umfang enthalten, 
-weshalb sich dadurch Oberflächen implementieren lassen, die ohne eine eigene Vollanzeige auskommen. Das Fehlen 
-einer einheitlichen Feldstruktur macht sich v.a. in der Vollanzeige von EDS negativ bemerkbar: Würde man hier der 
+weshalb sich dadurch Oberflächen implementieren lassen, die ohne eine eigene Volltrefferanzeige auskommen. Das Fehlen 
+einer einheitlichen Feldstruktur macht sich v.a. in der Volltrefferanzeige von EDS negativ bemerkbar: Würde man hier der 
 Empfehlung von Ebsco folgen, einfach alle Elemente in der Reihenfolge auszugeben, wie sie in der Antwort des
 Retrieve-Requests  geliefert werden, könnte man keine mehrsprachigen Oberflächen, keine Mashups mit anderen Diensten und
-auch keine Verfügbarkeitsinformationen in der Vollanzeige realisieren.  Um eine flexiblere Lösung umsetzen zu können,
+auch keine Verfügbarkeitsinformationen im Volltreffer realisieren.  Um eine flexiblere Lösung umsetzen zu können,
 haben wir selbst ein Mapping aus den Daten abgeleitet und in einem iterativen Prozess ergänzt und verbessert.  
 Beide APIs liefern als Antwortformate sowohl XML als auch JSON aus. Da sich letzteres einerseits in unserer Anwendung 
 schneller verarbeiten ließ, andererseits von vielen als _das_ Datenformat für das Web angesehen wird, haben wir uns zur
@@ -181,7 +181,7 @@ naturwissenschaftlichen Fächer geteilt wurde. In den geisteswissenschaftlichen 
 Angebotes, das verteilte Quellen zusammenführt, gesehen, allerdings wurde die intuitiv benutzbare Oberfläche mit
 Skepsis betrachtet und der Wunsch nach einer Recherchemaske für eine erweiterte Suche geäußert. Vor allem aber wurden
 Bedenken bezüglich der inhaltlichen Qualität der Discovery-Angebote bzw. des Relevanzrankings formuliert.  
-Beide Discovery-Dienste unter derselben Oberfläche wie den OPAC anzubieten, war insofern sinnvoll, als dass
+Beide Discovery-Dienste unter derselben Oberfläche wie den OPAC anzubieten war insofern sinnvoll, als dass
 deckungsgleiche Strukturen auch als solche identifiziert werden konnten und Unterschiede zwischen den Produkten
 deutlicher hervortraten. Am auffallendsten waren zunächst aus den APIs resultierende Unterschiede, u.a. der Umgang mit
 Dubletten[^8], die -- in EDS aufgrund fehlender Dokumentation von Feldern -- problematische Darstellung von Abstracts und
@@ -189,7 +189,7 @@ eine unterschiedliche Facettierung der Ergebnismenge. In Summon haben die Nutzer
 Schlagwort, Fachbereich, Publikationstyp, Sprache und Jahr zu filtern. In EDS wird die Treffermenge teilweise 
 nach anderen Kriterien facettiert: Nutzer können hier nach _peer reviewed_, Schlagwort, Veröffentlichung (d.h. dem
 übergeordneten Titel), Publikationstyp, Sprache, Verlag und Datenquelle filtern; ein Navigator für das Erscheinungsjahr
-existiert bedauerlicherweise nicht, bzw. ist dieser nur in der originären EDS-Oberfläche vorhanden -- über die EDS-API
+existiert bedauerlicherweise nicht bzw. ist dieser nur in der originären EDS-Oberfläche vorhanden -- über die EDS-API
 werden diese Informationen nicht geliefert. Das Fehlen dieses Navigators wurde von den Nutzern kritisiert, die Filter
 Veröffentlichung und Verlag wurden als überflüssig charakterisiert. Der Link zu den Datenbanken fand hingegen Anklang,
 ebenso wie der Schlagwort-Navigator.  
@@ -212,7 +212,7 @@ Discovery-Services wird "suchen" auch in Zukunft weiterentwickelt werden, um den
 der Basis von Suchmaschinentechnologie zugänglich zu machen und ihnen durch Mashups mit anderen Diensten Funktionalitäten
 anzubieten, die über den traditionellen OPAC hinausgehen. Andererseits müssen grundlegende Benutzerfunktionalitäten
 wie Vormerkung oder Verlängerung implementiert werden, sodass ein solcher Dienst den lokalen OPAC ablösen könnte.
-Es stellt sich zudem die Frage, ob weitere Inhalte in den RUB-Index eingebunden werden sollen, bzw. welche Inhalte dabei 
+Es stellt sich zudem die Frage, ob weitere Inhalte in den RUB-Index eingebunden werden sollen bzw. welche Inhalte dabei 
 relevant wären und den Nutzern einen Mehrwert böten.  
 Führt man den Gedanken der Integration möglichst vieler Datenquellen in ein einziges Angebot weiter, kann ein
 Discovery-Dienst allerdings keine endgültige Lösung sein, da es sich bei Discovery-Diensten ebenfalls um nichts anderes
@@ -225,15 +225,15 @@ Recherche im Web simuliert wird -- letztlich wird erst im Web selbst eine wirkli
 Index möglich sein.
 
 [^1]: Jansen, Heiko; Kemner-Heek, Kirstin; Schweitzer, Roswitha: Konkurrenzanalyse ausgewählter kommerzieller Suchindizes.
-http://www.hbz-nrw.de/dokumentencenter/veroeffentlichungen/suchindizes.pdf [Zugriff: 15. Juli 2014].
+<http://www.hbz-nrw.de/dokumentencenter/veroeffentlichungen/suchindizes.pdf> [Zugriff: 15. Juli 2014].
 [^2]: Rochkind, Jonathan: A Comparison of Article Search APIs via Blinded Experiment and Developer Review.
-http://journal.code4lib.org/articles/7738 [Zugriff: 15. Juli 2014].
-[^3]: Twitter: Bootstrap. http://getbootstrap.com/2.3.2/ [Zugriff: 15. Juli 2014].
-[^4]: Voss, Jacob; Reh, Uwe: Document Availability Information API (DAIA). http://gbv.github.io/daiaspec/daia.html
+<http://journal.code4lib.org/articles/7738> [Zugriff: 15. Juli 2014].
+[^3]: Twitter: Bootstrap. <http://getbootstrap.com/2.3.2/> [Zugriff: 15. Juli 2014].
+[^4]: Voss, Jacob; Reh, Uwe: Document Availability Information API (DAIA). <http://gbv.github.io/daiaspec/daia.html>
 [Zugriff: 15. Juli 2014].
-[^5]: Altmetric: Altmetric API documentation. https://api.altmetric.com/ [Zugriff: 15. Juli 2014].
-[^6]: Ebsco: EDS API Console. https://eds-api.ebscohost.com/Console/ [Zugriff: 15. Juli 2014].
-[^7]: Disqus: Disqus - The Web's Community of Communities. https://disqus.com/ [Zugriff: 15. Juli 2014].
+[^5]: Altmetric: Altmetric API documentation. <https://api.altmetric.com/> [Zugriff: 15. Juli 2014].
+[^6]: Ebsco: EDS API Console. <https://eds-api.ebscohost.com/Console/> [Zugriff: 15. Juli 2014].
+[^7]: Disqus: Disqus - The Web's Community of Communities. <https://disqus.com/> [Zugriff: 15. Juli 2014].
 [^8]: In beiden Discovery-Systemen traten Dubletten auf; kritisiert wurde in erster Linie deren Häufung in EDS.
 [^9]: Vgl. zu einer daten- statt containerbasierten Haltung auch Koster, Lukas: Old silos, new silos, no silos. 
-SWIB 2012, Köln, 26.-28. November 2012. http://de.slideshare.net/lukask/old-silos-new-silos-no-silos [Zugriff: 15. Juli 2014].
+SWIB 2012, Köln, 26.-28. November 2012. <http://de.slideshare.net/lukask/old-silos-new-silos-no-silos> [Zugriff: 15. Juli 2014].
